@@ -47,6 +47,7 @@
   /* Theme control variables */
   /* Default theme: light */
   --bg-clr: var(--light-bg);
+  --top-bg-ptrn-clr: var(--light-top-bg-ptrn);
   --primary-txt-clr: var(--light-text-blue);
   --secondary-txt-clr: var(--light-text-grayish-blue);
   --toggle-bg: var(--light-toggle-bg);
@@ -57,6 +58,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-clr: var(--dark-bg);
+    --top-bg-ptrn-clr: var(--dark-top-bg-ptrn);
     --primary-txt-clr: var(--dark-text-white);
     --secondary-txt-clr: var(--dark-text-blue);
     --toggle-bg: linear-gradient(
@@ -94,6 +96,8 @@ body {
   color: var(--primary-txt-clr);
   font-family: var(--ff);
   font-weight: var(--fw-regular);
+
+  position: relative;
 }
 
 img {
@@ -154,6 +158,21 @@ a:visited {
 
   display: flex;
   flex-wrap: wrap;
+}
+
+/* Top bg pattern */
+.header::before {
+  content: "";
+  width: 100%;
+  height: 37vh;
+  background-color: var(--top-bg-ptrn-clr);
+  border-radius: 0 0 1.8rem 1.8rem;
+  z-index: -1;
+
+  position: absolute;
+  top: -2.25rem;
+  /* Takes into account the top margin set on the header element */
+  left: 0;
 }
 
 @media (width >= 40em) {
@@ -279,7 +298,10 @@ a:visited {
 
 @media (width < 40em) {
   .toggle {
-    margin-inline: auto;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -449,6 +471,7 @@ a:visited {
 /* Handle manually switching theme */
 body.light {
   --bg-clr: var(--light-bg);
+  --top-bg-ptrn-clr: var(--light-top-bg-ptrn);
   --primary-txt-clr: var(--light-text-blue);
   --secondary-txt-clr: var(--light-text-grayish-blue);
   --toggle-bg: var(--light-toggle-bg);
@@ -458,6 +481,7 @@ body.light {
 
 body.dark {
   --bg-clr: var(--dark-bg);
+  --top-bg-ptrn-clr: var(--dark-top-bg-ptrn);
   --primary-txt-clr: var(--dark-text-white);
   --secondary-txt-clr: var(--dark-text-blue);
   --toggle-bg: linear-gradient(
